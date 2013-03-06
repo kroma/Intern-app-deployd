@@ -1,0 +1,638 @@
+<!doctype html>
+<!-- Conditional comment for mobile ie7 blogs.msdn.com/b/iemobile/ -->
+<!--[if IEMobile 7 ]>    <html class="no-js iem7" lang="en"> <![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	
+	<title>Finn sales managers web app. Text </title>
+	
+	<!-- Metatags
+	================================================== -->
+	<meta name="keywords" content="finn">
+	<meta name="description" content="Finn sales managers web app.">
+	<meta name="author" content="Kroma AS">
+	<meta name="web_author" content="Kroma AS">
+	<meta name="copyright" content="Finn copyright 2013. All Rights Reserved.">
+	
+	<!-- Dublin Core Metadata
+	================================================== -->
+	<meta name="DC.title" content="finn">
+	<meta name="DC.subject" content="Finn sales managers web app.">
+	<meta name="DC.creator" content="Kroma AS">
+	
+	<!-- Mobile viewport optimization h5bp.com/ad -->
+	<meta name="HandheldFriendly" content="True">
+	<meta name="MobileOptimized" content="320">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	
+	<!-- Home screen icon  Mathias Bynens mathiasbynens.be/notes/touch-icons -->
+	<!-- For iPhone 4 with high-resolution Retina display: -->
+	 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/h/apple-touch-icon.png">
+	<!-- For first-generation iPad: -->
+	 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/m/apple-touch-icon.png">
+	<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+	 <link rel="apple-touch-icon-precomposed" href="img/l/apple-touch-icon-precomposed.png">
+	<!-- For nokia devices: -->
+	 <link rel="shortcut icon" href="img/l/apple-touch-icon.png">
+	
+	<!-- iOS web app, delete if not needed. https://github.com/h5bp/mobile-boilerplate/issues/94 -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!--<script>(function(){var a;if(navigator.platform==="iPad"){a=window.orientation!==90||window.orientation===-90?"img/startup-tablet-landscape.png":"img/startup-tablet-portrait.png"}else{a=window.devicePixelRatio===2?"img/startup-retina.png":"img/startup.png"}document.write('<link rel="apple-touch-startup-image" href="'+a+'"/>')})()</script>-->
+	
+	<!-- The script prevents links from opening in mobile safari. https://gist.github.com/1042026 -->
+	<!--<script>(function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")</script>-->
+	
+	<!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
+	<meta http-equiv="cleartype" content="on">
+	
+	<!-- jQuery mobile css, put first before jquery js files -->
+<!--	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css">-->
+<!--	<link rel="stylesheet" href="css/jquery.jquery.mobile.custom.structure.min.css">-->
+	<link rel="stylesheet" href="css/brand.css">
+	
+	<!-- JavaScript -->
+	<script src="js/libs/modernizr-2.0.6.min.js"></script>
+	
+	<!-- File from CDNs with fallback -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write("<script src='js/libs/jquery-1.8.2.min.js'>\x3C/script>")</script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	<script type="text/javascript">
+		if (typeof $.mobile == 'undefined'){
+			document.write(unescape("%3Cscript src='js/libs/jquery.mobile-1.2.0.min.js' type='text/javascript'%3E%3C/script%3E"));
+		}
+	</script>
+<!--	<script type="text/javascript" src="js/libs/jquery.mobile.custom.min.js"></script>-->
+	<script type="text/javascript" src="dpd.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+	
+	<script>
+					function dynamicSort(property) {
+						//alert(property);
+						var sortOrder = 1;
+						if(property[0] === "-") {
+							sortOrder = -1;
+							property = property.substr(1, property.length - 1);
+						}
+						return function (a,b) {
+							var res = (a[property] > b[property]) ? -1 : (a[property] < b[property]) ? 1 : 0;
+							return res * sortOrder;
+						}
+					}
+					var query = {"published":"Yes"};
+					dpd.presentation.get(query, function (result, err) {
+					  if(err) return console.log(err);
+					  console.log(result);
+					  var dta = '';
+					  var pres_dta = '<option>Select Presentation</option>';
+					  result.sort(dynamicSort("dateCreated"));
+					  /*result.sort(function(a, b){
+						 var dateA=new Date(a.dateCreated), dateB=new Date(b.dateCreated)
+						 return dateA-dateB //sort by date ascending
+					  });*/
+					  console.log(result);
+					  for (i=0;i<result.length;i++)
+					  {
+						var my_date = new Date(result[i].dateCreated);
+						var month = my_date.getMonth() + 1;
+						var day = my_date.getDate();
+						var year = my_date.getFullYear();
+						var up_my_date = new Date(result[i].dateUpdated);
+						var up_month = my_date.getMonth() + 1;
+						var up_day = my_date.getDate();
+						var up_year = my_date.getFullYear();
+						var tg = result[i].tags;
+						dta += '<article class="presentation"><div class="inner"><h1>'+result[i].title+'</h1>';
+						dta += '<div class="content"><div class="description">'+result[i].description+'.</div>';
+						dta += '<ul class="meta nobullets"><li class="updated">'+up_day + '-' + up_month + '-' + up_year+'</li><li class="posted">'+day + '-' + month + '-' + year+'</li>';
+						//alert(tg);
+						/*dpd.tags.get(tg, function (res) {
+							alert(tg);
+						  console.log(res);
+						  //alert(res.title);
+						  for (j=0;j<res.length;j++)
+						  {
+							alert(res[j].id);
+							if(res[j].id == tg)
+							{
+								alert('its true');
+								dta += '<li class="tags">'+res[j].title+'</li>';
+							}
+						  }
+						});*/
+						//alert(result[i].tags);
+						dta += '<li class="tags">'+result[i].tags+'</li>';
+						dta += '<li class="size">'+Math.max(result[i].fileSizePdf, result[i].fileSizePpt, result[i].fileSizeKey)+'mb</li></ul>';
+						dta += '<div class="files"><ul class="menu">';
+						if(result[i].fileSizePpt == 0)
+						{						
+							dta += '<li class="ppt"></li>';
+						}
+						else
+							dta += '<li class="ppt"><a href="http://europa.kroma.no.c.bakabo.net:2403/files/'+result[i].fileNamePpt+'" target="_blank"><img src="img/gfx/icon-powerpoint.png" alt="Download ppt" width="23" height="22" /></a></li>';
+						if(result[i].fileSizeKey == 0)
+						{						
+							dta += '<li class="key"></li>';
+						}
+						else
+							dta += '<li class="key"><a href="http://europa.kroma.no.c.bakabo.net:2403/files/'+result[i].fileNameKey+'" target="_blank"><img src="img/gfx/icon-keynote.png" alt="Download key" width="25" height="25" /></a></li>';
+						if(result[i].fileSizePdf == 0)
+						{						
+							dta += '<li class="pdf"></li>';
+						}
+						else
+							dta += '<li class="pdf"><a href="http://europa.kroma.no.c.bakabo.net:2403/files/'+result[i].fileNamePdf+'" target="_blank"><img src="img/gfx/icon-pdf.png" alt="Download pdf" width="22" height="19" /></a></li>';
+						if(result[i].fileSizePdf == 0)
+							dta += '<li class="send"></li>';
+						else
+							dta += '<li class="send"><a href="#"><img src="img/gfx/icon-send.png" alt="Send pdf to client" width="24" height="12" /></a></li>';
+						dta += '</ul></div></div></div></article>';
+						//dta += '<tr id="'+result[i].id+'"><td id="'+result[i].id+'_username">'+result[i].title+'</td><td>'+month + '-' + day + '-' + year+'</td><td>'+result[i].published+'</td>';
+						//dta += '<td><div class="btn-toolbar"><div class="btn-group"><a class="btn" href="javascript:preEdit(\''+result[i].id+'\', \'presentation\')"><i class="icon-pencil"></i></a></div></div></td></tr>';
+						//dta += '</div></div></td></tr>';
+						pres_dta += '<option value="'+result[i].title+'">'+result[i].title+'</option>';
+					  }
+					  $('#liData').html(dta);
+					  $('#pres_selec').html(pres_dta);
+					});
+					var cat_query = {"published":"Yes"};
+					dpd.categories.get(cat_query, function (result, err) {
+					  if(err) return console.log(err);
+					  console.log(result);
+					  var dta = '';
+					  var cat_data = '<option>Select category</option>';
+					  for (i=0;i<result.length;i++)
+					  {
+						//dta += '<tr id="'+result[i].id+'"><td>--</td><td id="'+result[i].id+'_username">'+result[i].title+'</td><td>'+result[i].published+'</td>';
+						//dta += '<td><div class="btn-toolbar"><div class="btn-group"><a class="btn" href="javascript:preEdit(\''+result[i].id+'\', \'cat\')"><i class="icon-pencil"></i></a></div></div></td></tr>';
+						//dta += '</div></div></td></tr>';
+						dta += '<li><a href="javascript:get_presentation(\''+result[i].id+'\');">'+result[i].title+'</a></li>';
+						cat_data += '<option value="'+result[i].title+'">'+result[i].title+'</option>';
+					  }
+					  $('#ulData').html(dta);
+					  $('#cat_selec').html(cat_data);
+					});
+				</script>
+	
+	<!-- end scripts-->
+	
+	<script type="text/javascript">
+		// If retina enabled add class to body
+		if(window.devicePixelRatio >= 2) {
+			retinaEnabled = true;
+			retina = '@2x';
+			$('body').addClass('retina');
+		}else{ retina = ''; }
+	</script>
+	<script>
+			dpd.users.me(function (result) {
+				if(result == '')
+				{
+					//alert("no user");
+					//location.href = "/";
+				}
+				else
+				{
+					if(result.role == 'Administrator')
+					{
+						//location.href = "/add_user.html";
+						location.href = "/#mainpage";
+					}
+					else if(result.role == 'Sales manager')
+					{
+						location.href = "/#mainpage";
+					}
+				}
+			});
+			function validat(){
+				if ($('#old_password').val() == "")
+				{
+					alert("You must enter old password");
+					return false;
+				}
+				if ($('#new_password').val() == "")
+				{
+					alert("You must enter new password");
+					return false;
+				}
+				if ($('#confirm_password').val() == "")
+				{
+					alert("You must enter new password");
+					return false;
+				}
+				if ($('#confirm_password').val() != $('#new_password').val())
+				{
+					alert("Confirm Password does not match");
+					return false;
+				}
+				else
+					return true;
+			}
+		</script>
+
+</head>
+
+<body>
+
+<!--
+==========================================================================
+  LOGIN PAGE
+==========================================================================
+-->
+<div id="loginpage" class="page" data-role="page">
+
+  <div class="header" data-role="header">
+  	<div class="inner">
+  		<header>
+			<img class="logo" src="img/gfx/logo.png" alt="Logo" width="123" height="39"  />
+			<h2>Presentations</h2>
+  		</header>
+  	</div>
+  </div>
+  
+    <div class="maincontent">
+      <div class="inner">
+        <article data-role="content" class="content">
+        	<div class="inner">
+        	
+				<h1>Login</h1>
+				<div class="error-message" id="error_msg"></div>
+				<form method="post" action="" id="login_form">
+					<div class="error-message" id="error_msg"></div>
+					<label for="email">Email</label>
+					<input type="email" name="email" value="" placeholder="yourname@finn.no" id="username" class="blueborder" />
+					<label for="password">Password</label>
+					<input type="password" name="password" value="" placeholder="Password" id="password" class="blueborder" />
+					<div id="rememberme"><input type="checkbox" name="rememberme" value="rememberme" data-role="none" /><span class="checboxlabel">Remember me for 2 weeks.</span></div>
+					<input type="submit" class="submit" name="login" value="Login" data-role="none" />
+				</form>
+				
+        	</div>
+        	<a href="javascript:void(0);" id="forgot_pass" class="forgotpassword">Forgot password?</a>
+        </article>
+      </div>
+    </div>
+    
+    <div class="footer" data-role="footer">
+		<div class="inner">
+			<footer data-role="content" class="small">
+				<p>Finn &copy; 2013</p>
+			</footer>
+		</div>
+	</div>
+</div>
+<!-- end Login page -->
+
+
+<!--
+==========================================================================
+  PASSWORD RESET PAGE
+==========================================================================
+-->
+<div id="resetpage" class="page" data-role="page">
+
+  <div class="header" data-role="header">
+  	<div class="inner">
+  		<header>
+			<img class="logo" src="img/gfx/logo.png" alt="Logo" width="123" height="39" />
+			<h2>Presentations</h2>
+  		</header>
+  	</div>
+  </div>
+  
+    <div class="maincontent">
+      <div class="inner">
+        <article data-role="content" class="content">
+        	<div class="inner">
+        	
+				<h1>Reset</h1>
+				<form method="post" action="">
+					<label for="password">New password</label>
+					<input type="password" name="password" value="" placeholder="New password" class="blueborder" />
+					<label for="confirmpassword">Confirm</label>
+					<input type="password" name="confirmpassword" value="" placeholder="Confirm" class="blueborder" />
+					<input type="submit" class="submit" name="save" value="Save" data-role="none" />
+				</form>
+				
+        	</div>
+        </article>
+      </div>
+    </div>
+    
+    <div class="footer" data-role="footer">
+		<div class="inner">
+			<footer data-role="content" class="small">
+				<p>Finn &copy; 2013</p>
+			</footer>
+		</div>
+	</div>
+</div>
+<!-- end Password reset page -->
+
+<!--
+==========================================================================
+  MAIN PAGE
+==========================================================================
+  Note: for scrolling of presentations we use iScroll http://cubiq.org/dropbox/iscroll4/examples/carousel/
+-->
+<div id="mainpage" class="page" data-role="page">
+
+	<div class="header" data-role="header">
+		<div class="inner">
+			<header>
+			
+				<a href="#mainpage" data-transition="slide" data-direction="reverse">
+					<img class="logo" src="img/gfx/logo.png" alt="Logo" width="123" height="39" />
+					<a href="#menu" class="showmenu">Menu</a>
+					
+				</a>
+				<a href="#" id="logout-btn" style="display:block; float:right; margin-right:58px; margin-top: -55px;">Logout</a>
+			</header>
+		</div>
+	</div>
+	
+    <div class="maincontent">
+      <div class="inner">
+      	<aside id="sidebar">
+      		<div class="inner main">
+	      		<div class="nav categories active">
+	      			<div id="categoryslider" class="inner slider">
+	      				<nav class="menu scroll-content-vert">
+	      					<ul id="ulData">
+	      						
+	      					</ul>
+      						<div id="overlayshadow">
+      							<img src="img/gfx/shadow-content-left.png" alt="Shadow overlay" width="10" height="700" />
+      						</div>
+	      				</nav>
+	      		    </div>
+	      		</div>
+	      		<div class="links subnav center">
+	      			<div class="inner">
+	      				<nav>
+	      					<ul class="menu">
+							<script>
+							dpd.users.me(function (result) {
+								if(result == '')
+								{
+									//alert("no user");
+									//location.href = "/";
+								}
+								else
+								{
+									if(result.role == 'Administrator')
+									{
+										//location.href = "/add_user.html";
+										$('#navadmin').show();
+									}
+								}
+							});
+							</script>
+	      						<li><a id="navadmin" href="/add_user.html" data-role="none" rel="external" style="display:none">Administration</a></li>
+	      						<li><a id="navmyaccount" href="#" data-role="none">My account</a></li> 
+	      						<li><a id="navsupport" href="#" data-role="none">Support</a></li>
+	      					</ul>
+	      				</nav>
+	      		    </div>
+	      		</div>
+      		</div>
+      	</aside>
+        <article data-role="content" class="content">
+        	<div class="inner">
+				<h1 class="title">Main page with presentations</h1>
+				
+				<div id="nav">
+<!--					<div id="prev" onclick="myScroll.scrollToPage('prev', 0);return false">&larr; prev</div>-->
+					<ul id="indicator">
+						<li class="active">1</li>
+						<li>2</li>
+						<li>3</li>
+					</ul>
+<!--					<div id="next" onclick="myScroll.scrollToPage('next', 0);return false">next &rarr;</div>-->
+				</div>
+				<div id="presentationslider" class="slider">
+					<div id="horizontal_slider" class="scroll-content-horz">
+						
+						<ul id="presentationlist" class="nobullets">
+						
+							<!-- start Slide 1 -->
+							<li class="slide" id="liData">
+							</li>
+						
+						</ul>	
+					</div>
+					
+					<a href="#" class="btnloadmore"><img src="img/gfx/btn-loadmore.png" alt="Load more presentations" width="130" height="27" /></a>
+				</div>
+				
+        	</div>
+        </article>
+      </div>
+    </div>
+    
+    <div class="footer" data-role="footer">
+		<div class="inner">
+			<footer data-role="content" class="small">
+				<p>Finn &copy; 2013</p>
+			</footer>
+		</div>
+	</div>
+  </div>
+<!-- end Main page -->
+
+<!--
+==========================================================================
+  SEND TO CLIENT DIALOG
+==========================================================================
+  Note: replace title and message when form is send
+-->
+<div id="sendtoclient" data-role="none" class="dialog">
+
+  <div class="header" data-role="header">
+  	<div class="inner">
+  		<header>
+			<h1>Send pdf to client</h1>
+  		</header>
+  	</div>
+  </div>
+  
+    <div class="maincontent">
+      <div class="inner">
+        <article data-role="content" class="content">
+        	<div class="inner">
+        	
+        		<img src="img/gfx/icon-message.png" alt="Icon message" width="50" height="23" />
+        		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor est vitae ipsum elementum ac auctor dolor sagittis.</p>
+				<form method="post" action="">
+					<label for="email">Client name</label>
+					<input type="text" name="name" value="" placeholder="Client name" />
+					<label for="email">Client email</label>
+					<input type="email" name="email" value="" placeholder="Client email" />
+					<label for="message">Message</label>
+					<textarea name="message" placeholder="Message"></textarea>
+					<input type="submit" class="submit" name="send" value="Send" />
+				</form>
+				
+        	</div>
+        </article>
+      </div>
+    </div>
+</div>
+<!-- end Send to client dialog -->
+<!--
+==========================================================================
+  MY ACCOUNT DIALOG
+==========================================================================
+  Note: replace title and message when form is send
+-->
+<div id="myaccount" data-role="none" class="dialog">
+
+  <div class="header" data-role="header">
+  	<div class="inner">
+  		<header>
+			<h1>My Account</h1>
+			<a href="#" class="btnclose"><img src="img/gfx/icon-closedialog.png" alt="Close" width="28" height="28" /></a>
+  		</header>
+  	</div>
+  </div>
+  
+    <div class="maincontent">
+      <div class="inner">
+        <article data-role="content" class="content">
+        	<div class="inner">
+        	
+        		<img class="iconmessage" src="img/gfx/icon-message.png" alt="Icon message" width="50" height="23" />
+        		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor est vitae ipsum elementum ac auctor dolor sagittis.</p>
+        		<div class="error-message" id="error_msg"></div>
+				<div class="success-message" id="success_msg"></div>
+				<form method="post" action="" id="reset_form">
+        			<label for="password">Old password</label>
+        			<input type="password" name="password" value="" id="old_password" placeholder="Old password" />
+        			<label for="password">New password</label>
+        			<input type="password" name="password" value="" id="new_password" placeholder="New password" />
+        			<label for="confirmpassword">Confirm</label>
+        			<input type="password" name="confirmpassword" id="confirm_password"  value="" placeholder="Confirm password" />
+        			<input type="submit" class="submit" name="save" value="Save" />
+        		</form>
+				
+        	</div>
+        </article>
+      </div>
+    </div>
+</div>
+<!-- end My account dialog -->
+
+<!--
+==========================================================================
+  SUPPORT DIALOG
+==========================================================================
+  Note: replace title and message when form is send
+-->
+<div id="support" data-role="none" class="dialog">
+
+  <div class="header" data-role="header">
+  	<div class="inner">
+  		<header>
+			<h1>Support form</h1>
+			<a href="#" class="btnclose"><img src="img/gfx/icon-closedialog.png" alt="Close" width="28" height="28" /></a>
+  		</header>
+  	</div>
+  </div>
+  
+    <div class="maincontent">
+      <div class="inner">
+        <article data-role="content" class="content">
+        	<div class="inner">
+        	
+        		<img class="iconmessage" src="img/gfx/icon-message.png" alt="Icon message" width="50" height="23"  />
+        		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor est vitae ipsum elementum ac auctor dolor sagittis.</p>
+				<div class="error-message" id="error_msg"></div>
+				<form method="post" action="" id="support_form">
+					<label for="title">Issue or suggestion</label>
+					<input type="text" name="title" id="issue_ttl" value="" placeholder="Issue or suggestion" />
+					<div id="selectpresentation">
+						<h2>Select presentation</h2>
+						<label for="category">Category</label>
+						<div id="selectcat">
+							<select id="cat_selec">
+							</select>
+						</div>
+						<label for="presentations">Presentations</label>
+						<div id="selectpres">
+							<select id="pres_selec">
+							</select>
+						</div>
+					</div>
+					<label for="message">Message</label>
+					<textarea name="message" id="message" placeholder="Message"></textarea>
+					<input type="submit" class="submit" name="send" value="Send" />
+				</form>
+				
+        	</div>
+        </article>
+      </div>
+    </div>
+</div>
+<!-- end Support dialog -->
+
+<!--
+==========================================================================
+  LOADING AND DIALOG OVERLAY
+==========================================================================
+  Note: this gets activated when page is loading or one dialog is active
+-->
+<div id="overlay"></div>
+<!-- end Loading and dialog overlay -->
+
+	<!-- Extra javascript -->
+	<!--<script type="text/javascript">
+	var addToHomeConfig = {
+		animationIn: 'bubble',
+		animationOut: 'drop',
+		lifespan:10000,
+		expire:2,
+		touchIcon:true
+	};
+	</script>
+	<script type="application/javascript" src="js/add2home.js"></script>-->
+<!--	<script src="js/main.js"></script>-->
+	<script type="text/javascript" src="js/pageloaded-all.js"></script>
+<!--	<script type="text/javascript" src="js/pageloaded-tablet.js"></script>-->
+	<script type="text/javascript" src="js/pageloaded-mobile.js"></script>
+	<!-- js -->
+	<script type="text/javascript" src="js/m.webkit.js"></script>
+	<script type="text/javascript" src="js/jquery.retina.js"></script>
+	<script type="text/javascript" src="modules/iscroll/iscroll.js"></script>
+	<script type="text/javascript" src="modules/iscroll/iscroll-settings.js"></script>
+<!--	<script type="text/javascript" src="js/gaeventtracking.js"></script>-->
+	<!-- Form validation-->
+	<!--<script type="text/javascript" src="js/jquery.validate.js"></script>
+	<script type="text/javascript" src="js/jquery.form.js"></script>
+	<script type="text/javascript" src="js/jquery.activateform.js"></script>-->
+	<script type="text/javascript">
+	    // Replaces the image with rmnp@2x.jpg
+	    $( 'img' ).retina({suffix: "@2x"});
+	</script>
+	<!-- end js -->
+
+  <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
+       mathiasbynens.be/notes/async-analytics-snippet -->
+   <!--<script type="text/javascript">
+   
+   	var _gaq = _gaq || [];
+   	_gaq.push(['_setAccount', 'UA-XXXXX-XX']);
+   	_gaq.push(['_trackPageview']);
+   	
+   	(function() {
+   	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+   	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+   	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+   	})();
+   
+   </script>-->
+
+</body>
+</html>

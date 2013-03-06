@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Account Settings</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="dpd.js"></script>
+		<script type="text/javascript" src="/js/custom.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+		<!--<script type="text/javascript">
+		var uId = '';
+		var old_pass = '';
+		  dpd.users.me(function(me) {
+			uId = me.id;
+			old_pass = me.password;
+			console.log(me);
+			console.log(me.password);
+		  });
+		</script>-->
+		<script>
+			dpd.users.me(function (result) {
+				if(result == '')
+				{
+					//alert("no user");
+					location.href = "/";
+				}
+				else
+				{
+					if(result.role == 'Sales manager')
+					{
+						location.href = "/welcome.html";
+					}
+				}
+			});
+			function validat(){
+				if ($('#old_password').val() == "")
+				{
+					alert("You must enter old password");
+					return false;
+				}
+				if ($('#new_password').val() == "")
+				{
+					alert("You must enter new password");
+					return false;
+				}
+				if ($('#confirm_password').val() == "")
+				{
+					alert("You must enter new password");
+					return false;
+				}
+				if ($('#confirm_password').val() != $('#new_password').val())
+				{
+					alert("Confirm Password does not match");
+					return false;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		
+		<div class="container">
+			<label style="font-size:40px; display: block; text-align: center; line-height: 150%;">Reset Password</label>
+			<span id="error_msg"></span>
+			<form id="reset_form">
+			  <label for="old_password">Old Password:</label>
+			  <input type="password" id="old_password" onChange="document.getElementById('old_password').value.length==0"/>
+			  <label for="new_password">Password:</label>
+			  <input type="password" id="new_password" />
+			  <label for="confirm_password">Confirm Password:</label>
+			  <input type="password" id="confirm_password" /><br />
+			  <button type="submit" class="btn btn-primary" onclick="return validat()">Save</button>
+			</form>
+		</div>
+  </body>
+</html>

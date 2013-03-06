@@ -1,0 +1,611 @@
+/* 
+	WEB APP MADE BY
+-------------------------------------------------------------------------------
+
+   Design, html, css & js
+   Robin Klein Schiphorst
+   http://www.kroma.no
+   rk@kroma.no
+   
+   * Html, Css & javascript based on the jQuery Mobile Framework.
+   * There are third party scripts in the web app, we thank everyone for there hard work
+     and sharing it with the world.
+   
+----------*/
+
+/* 
+	THEME SETTINGS
+-------------------------------------------------------------------------------*/
+
+
+/* 
+	ELEMENTS
+-------------------------------------------------------------------------------*/
+
+#overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 8;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255,255,255,0.8);
+	display: none;
+}
+.btn,
+input[type="submit"],
+button {
+	font-size: @fontsize;
+	color: @white;
+	text-shadow: 0 1px 4px rgba(0,0,0,.5);
+	line-height: @lineheight;
+	
+	.size(130px, 35px);
+	.border-radius(8px);
+	border: 0;
+	
+	background-color: #f38d00;
+	.box-shadow(~"0 1px 4px rgba(0,82,159,.25)");
+	.background-image(~"linear-gradient(bottom, #f38d00 0%, #f59f00 100%)");
+	margin: 0 auto;
+	display: block;
+	cursor: pointer;
+}
+
+label {
+	display: none;
+}
+input[type="text"],
+input[type="password"],
+input.ui-input-text,
+select {
+	font-size: 0.875em;
+	color: @darkgrey;
+	.border-radius(@radius);
+	border: @border solid @grey;
+	background-color: @white;
+	margin-bottom: 1em;
+	padding: 0.5em;
+}
+	select {
+		height: 30px;
+		color: @darkgrey;
+	}
+textarea,
+textarea.ui-input-text {
+	font-size: 0.875em;
+	color: @darkgrey;
+	.border-radius(@radius);
+	border: @border solid @grey;
+	background-color: @white;
+	padding: 0.5em;
+}
+	input[type="text"].blueborder,
+	input[type="password"].blueborder,
+	input.ui-input-text.blueborder,
+	textarea.blueborder,
+	textarea.ui-input-text.blueborder,
+	select.blueborder {
+		border: @border solid @pricolor;
+	}
+input[type="checkbox"],
+.ui-checkbox input {
+	.size(40px);
+	.border-radius(4px);
+	border: @border solid @thicolor;
+	background-color: @white;
+	display: inline;
+}
+.btnloadmore {
+	display: none;
+}
+
+
+/* 
+	STRUCTURE
+-------------------------------------------------------------------------------*/
+
+body { 
+	padding: 0;
+}
+/* Uncenter website */
+.container {
+	margin-right: 0 !important;
+	margin-left: 0 !important;
+}
+
+
+/* 
+	TYPOGRAPHY
+-------------------------------------------------------------------------------*/
+
+/* Show a image to tell user page is loading */
+body {
+	background: url('../img/gfx/loading.png') no-repeat center center !important;
+}
+body.ui-mobile-viewport {
+	font-family: @fontfamily;
+	font-size: @fontsize;
+	color: @textcolor;
+	line-height: @lineheight;
+	background: @bgrepeat !important;
+}
+	.page {
+		background: @bgrepeat;
+	}
+h1, h2, h3, h4, h5, h6 {
+	font-family: @headingfontfamily;
+	color: @headingcolor;
+	font-weight: @headingfontweight;
+	line-height: @lineheight;
+}
+	h1 { font-size: 1.3125em; color: @pricolor; margin-bottom: 0.5em; }
+	h2 { font-size: 1.4em; color: lighten(@pricolor, 10%); }
+	h3 { font-size: 1.3em; color: lighten(@pricolor, 10%); }
+	h4 { font-size: 1.2em; color: lighten(@pricolor, 10%); }
+	h5 { font-size: 1.1em; color: lighten(@pricolor, 10%); }
+	h6 { font-size: 1em; color: lighten(@pricolor, 10%); }
+	h1 a { color: @pricolor; }
+	h2 a { color: lighten(@pricolor, 10%); }
+	h3 a { color: lighten(@pricolor, 10%); }
+	h4 a { color: lighten(@pricolor, 10%); }
+	h5 a { color: lighten(@pricolor, 10%); }
+	h6 a { color: lighten(@pricolor, 10%); }
+	h1 a:hover { text-decoration: none; }
+	h2 a:hover { text-decoration: none; }
+	h3 a:hover { text-decoration: none; }
+	h4 a:hover { text-decoration: none; }
+	h5 a:hover { text-decoration: none; }
+	h6 a:hover { text-decoration: none; }
+p { }
+a {
+	color: darken(@pricolor, 20%);
+	text-decoration: none;
+}
+	a:hover {
+		color: darken(@seccolor, 40%);
+		text-decoration: none;
+	}
+blockquote {
+	font-size: @fontsizebig;
+	line-height: @lineheightsmall;
+	font-style: italic;
+	margin: 1em 0;
+}
+	blockquote small {
+		font-size: @fontsizesmall;
+		line-height: @lineheightsmall;
+		font-style: normal;
+		margin-top: 0.4em;
+	}
+input::-webkit-input-placeholder { 
+	color: @lightgrey;
+}
+input:-moz-placeholder { 
+	color: @lightgrey;
+}
+
+/* Easy to use classes */
+.small {
+	font-size: @fontsizesmall;
+	line-height: @lineheightsmall;
+}
+.big {
+	font-size: @fontsizebig;
+	line-height: @lineheightbig;
+}
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+	
+	&.nobullets li,
+	&.menu li {
+		list-style: none;
+		list-style-image: none;
+		list-style-position: outside;
+		list-style-type: none;
+	}
+	&.left li {
+		float: left;
+		display: inline;
+	}
+}
+.subnav.center {
+	overflow: hidden; /* hide horizontal scrollbar*/
+	
+	.inner {
+		position:relative;
+		left:-50%;
+		text-align:left;
+		float:right;
+	}
+	ul { 
+		position: relative;
+		left: 50%;
+		list-style: none;
+	}
+	li {
+		position:relative;
+		float:left;
+	} /* ie needs position:relative here*/
+}
+.clear {
+	clear: both;
+}
+
+
+/* 
+	BLOCKS
+-------------------------------------------------------------------------------*/
+
+
+/* 
+	NAVIGATION
+-------------------------------------------------------------------------------*/
+
+.links {
+	
+	li {
+		margin: 0;
+		a {
+			width: 29px;
+			height: 29px;
+			text-indent: -9999px;
+			background: url('../img/gfx/icon-admin.png') no-repeat center center;
+			padding: 0.5em;
+			display: block;
+			
+			/* Animation */
+			-webkit-transition: all 0.3s ease-in-out;
+			-moz-transition: all 0.3s ease-in-out;
+			-o-transition: all 0.3s ease-in-out;
+			-ms-transition: all 0.3s ease-in-out;
+			transition: all 0.3s ease-in-out;
+			
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+	}
+	li a#navadmin {
+		background: url('../img/gfx/icon-admin.png') no-repeat center center;
+	}
+	li a#navmyaccount {
+		background: url('../img/gfx/icon-myaccount.png') no-repeat center center;
+	}
+	li a#navsupport {
+		background: url('../img/gfx/icon-support.png') no-repeat center center;
+	}
+}
+
+/* 
+	HEADER
+-------------------------------------------------------------------------------*/
+
+.header {
+	text-align: center;
+	border: 0;
+	clear: both;
+	
+	a {
+		display: block;
+	}
+	img.logo {
+		margin: 10px 0 5px;
+	}
+	img.logo.small {
+		max-width: 70px;
+	}
+	h2 {
+		font-size: 0.875em;
+		font-weight: bold;
+		color: @white;
+	}
+	a.showmenu {
+		display: none;
+	}
+}
+
+/* 
+	CONTENT
+-------------------------------------------------------------------------------*/
+
+.maincontent {
+    text-shadow: none;
+    	
+	.content {
+		padding: 0;
+		
+		.inner {
+			padding: 1.2em;
+		}
+	}
+	h1 {
+		margin-top: 0;
+	}
+	img {
+		max-width: 100%;
+	}
+	video {
+		width: 100%;
+		max-width: 100%;
+		margin: 0;
+		padding: 0;
+	}
+}
+#loginpage .maincontent {
+	background: transparent;
+	
+	.content .inner {
+		background: @white;
+	}
+	form {
+		position: relative;
+		
+		#rememberme {
+			position: absolute;
+			bottom: -65px;
+			width: 100%;
+			height: 45px;
+			color: @white;
+			font-weight: bold;
+			text-align: center;
+			text-shadow: 0 1px 2px rgba(0,0,0,.5);
+			line-height: 45px;
+			background: url('../img/gfx/bg-rememberme.png') no-repeat center top;
+			background-size: 100% 45px;
+			
+			input[type="checkbox"] {
+				width: 15px;
+				height: 15px;
+				margin-right: 10px;
+			}
+			span {
+				padding-bottom: 2px;
+			}
+		}
+	}
+	.forgotpassword {
+		width: 100%;
+		height: 45px;
+		color: @white;
+		font-weight: bold;
+		text-shadow: 0 1px 2px rgba(0,0,0,.5);
+		line-height: 45px;
+		text-align: center;
+		padding-top: 45px;
+		display: block;
+	}
+}
+
+
+/* 
+	PRESENTATIONS
+-------------------------------------------------------------------------------*/
+
+#presentationslider #horizontal_slider {
+	background: @white;
+}
+.presentation {
+	
+	.inner {
+		padding: 0;
+	}
+	ul.meta {
+		padding: 0.5em;
+		overflow: hidden;
+		
+		li {
+			font-size: 0.8em;
+			background: no-repeat left 4px;
+			background-size: 13px;
+			margin-right: 1em;
+			padding-left: 18px;
+			float: left;
+			display: block;
+		}
+		li.updated {
+			color: @thicolor;
+			background-image: url('../img/gfx/icon-datenew.png');
+		}
+		li.posted {
+			background-image: url('../img/gfx/icon-date.png');
+		}
+		li.tags {
+			background: url('../img/gfx/icon-phone.png') no-repeat 2px 3px;
+			background-size: 8px;
+		}
+		li.size {
+			background-image: url('../img/gfx/icon-download.png');
+		}
+	}
+	.files ul {
+		background: @foucolor;
+		padding: 0.5em;
+		overflow: hidden;
+		
+		li {
+			margin-right: 0.5em;
+			float: left;
+			display: inline;
+		}
+		li a {
+			.size(35px, 35px);
+			line-height: 45px;
+			text-align: center;
+			background-color: #00abef;
+			.background-image(~"linear-gradient(bottom, #00adef 0%, #00bbf1 100%)");
+			display: block;
+		}
+		li.pdf a {
+			line-height: 42px;
+		}
+		li.send a {
+			line-height: 35px;
+		}
+	}
+}
+
+
+/* 
+	DIALOGS
+-------------------------------------------------------------------------------*/
+
+.dialog {
+	position: absolute;
+	bottom: 0;
+	z-index: 9;
+	.box-shadow(~"0 1px 10px rgba(0,82,159,.5)");
+	display: none;
+	
+	.header {
+		padding: 0 !important;
+	}
+	.content .inner {
+		min-height: 280px;
+	}
+	h1 {
+		width: auto;
+		font-size: 1.2em;
+		color: #fff;
+		text-align: left;
+		background: @bgrepeatbretina;
+		margin: 0;
+		padding: 0.8em 20px;
+	}
+	.btnclose {
+		position: absolute;
+		top: 0.5em;
+		right: 1em;
+		background: #fff;
+		padding: 0.8em 1em;
+	}
+	.iconmessage {
+		margin: 10px 20px 10px 0;
+		float: left;
+	}
+	p:first-of-type {
+		margin-top: 0;
+	}
+	form {
+		width: 100%;
+		border-bottom: 1px dashed #d3d3d3;
+		padding-bottom: 2em;
+		
+		#selectpresentation {
+		
+			h2 {
+				font-size: 1.2em;
+				font-weight: normal;
+				color: @lightgrey;
+				display: none;
+			}
+		}
+		input:not(.submit),
+		select,
+		textarea {
+			width: 100% - 5em;
+			margin: 0.5em 0 1em;
+			display: block;
+		}
+		select {
+			width: 100% - 12em;
+		}
+		#selectcat {
+			width: 95%;
+			background: url('../img/gfx/icon-tag-grey.png') no-repeat right center;
+			overflow: hidden;
+		}
+		#selectpres {
+			width: 95%;
+			background: url('../img/gfx/icon-pdf-grey.png') no-repeat right center;
+			overflow: hidden;
+		}
+		textarea {
+			height: 50px;
+		}
+	}
+}
+
+/* 
+	FOOTER
+-------------------------------------------------------------------------------*/
+
+.footer {
+	color: @white;
+	text-align: center;
+	display: none;
+	
+	footer {
+		padding: 0;
+	}
+}
+
+
+/* 
+	MOBILE
+-------------------------------------------------------------------------------*/
+
+/*@media screen and (max-width: 320px) {
+	@import "max320.less";
+}
+@media screen and (min-width: 320px) {
+	@import "min320.less";
+}
+@media screen and (max-width: 480px) {
+	@import "min480.less";
+}
+@media screen and (min-width: 481px) {
+	@import "min480.less";
+}*/
+
+
+/* 
+	TABLETS & SMALL DESKTOP
+-------------------------------------------------------------------------------*/
+
+@media screen and (max-width: 768px) {
+	@import "max768.less";
+	@import "max768hover.less";
+}
+@media screen and (min-width: 769px) {
+	@import "min768.less";
+	@import "min768hover.less";
+}
+@media screen and (min-width: 979px) {
+	@import "min979.less";
+}
+
+/* 
+	HOVERS
+-------------------------------------------------------------------------------*/
+@import "hover.less";
+
+/* 
+	RETINA DEVICES
+-------------------------------------------------------------------------------*/
+
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5),
+screen and (-webkit-min-device-pixel-ratio: 2), 
+screen and (max--moz-device-pixel-ratio: 2) {
+	@import "themeretina.less";
+}
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5) and (max-width: 768px),
+only screen and (min-device-pixel-ratio : 1.5) and (max-width: 768px),
+screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 768px), 
+screen and (max--moz-device-pixel-ratio: 2) and (max-width: 768px) {
+	@import "max768retina.less";
+}
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5) and (min-width: 768px),
+only screen and (min-device-pixel-ratio : 1.5) and (min-width: 768px),
+screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 768px), 
+screen and (max--moz-device-pixel-ratio: 2) and (min-width: 768px) {
+	@import "min768retina.less";
+}

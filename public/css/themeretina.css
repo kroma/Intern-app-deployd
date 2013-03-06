@@ -1,0 +1,11 @@
+.links li a{background:url('../img/gfx/icon-admin@2x.png') no-repeat left top;background-size:29px;}
+.links li a#navadmin{background:url('../img/gfx/icon-admin@2x.png') no-repeat left top;background-size:29px;}
+.links li a#navmyaccount{background:url('../img/gfx/icon-myaccount@2x.png') no-repeat left top;background-size:29px;}
+.links li a#navsupport{background:url('../img/gfx/icon-support@2x.png') no-repeat left top;background-size:29px;}
+#loginpage .maincontent form #rememberme{background:url('../img/gfx/bg-rememberme@2x.png') no-repeat center top;background-size:auto 45px;}
+.maincontent .inner .content .inner .presentation .inner ul.meta li.updated{background-image:url('../img/gfx/icon-datenew@2x.png');background-size:13px;}
+.maincontent .inner .content .inner .presentation .inner ul.meta li.posted{background-image:url('../img/gfx/icon-date@2x.png');background-size:13px;}
+.maincontent .inner .content .inner .presentation .inner ul.meta li.tags{background:url('../img/gfx/icon-phone@2x.png') no-repeat 2px 3px;background-size:8px;}
+.maincontent .inner .content .inner .presentation .inner ul.meta li.size{background-image:url('../img/gfx/icon-download@2x.png');background-size:13px;}
+.dialog{}.dialog #selectcat{background:url('../img/gfx/icon-tag-grey@2x.png') no-repeat right center;background-size:19px;}
+.dialog #selectpres{background:url('../img/gfx/icon-pdf-grey@2x.png') no-repeat right center;background-size:22px;}

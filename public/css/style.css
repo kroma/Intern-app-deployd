@@ -1,0 +1,23 @@
+.container{
+	/*margin-left: 430px;*/
+    margin-top: 150px;
+	background: #1E90FF;
+}
+#login_form{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 20px;
+	text-align: center;
+	
+}
+#reset_password_form{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 20px;
+	text-align: center;
+	
+}
+#reset_form{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 20px;
+	text-align: center;
+	
+}

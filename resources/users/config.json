@@ -1,0 +1,37 @@
+{
+	"type": "UserCollection",
+	"properties": {
+		"role": {
+			"name": "role",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "role",
+			"order": 0
+		},
+		"blocked": {
+			"name": "blocked",
+			"type": "boolean",
+			"typeLabel": "boolean",
+			"required": false,
+			"id": "blocked",
+			"order": 1
+		},
+		"DateCreated": {
+			"name": "DateCreated",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "DateCreated",
+			"order": 2
+		},
+		"DateUpdated": {
+			"name": "DateUpdated",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "DateUpdated",
+			"order": 3
+		}
+	}
+}

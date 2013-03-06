@@ -1,0 +1,271 @@
+/* 
+	WEB APP MADE BY
+-------------------------------------------------------------------------------
+
+   Design, html, css & js
+   Robin Klein Schiphorst
+   http://www.kroma.no
+   rk@kroma.no
+   
+   * Html, Css & javascript based on the jQuery Mobile Framework.
+   * There are third party scripts in the web app, we thank everyone for there hard work
+     and sharing it with the world.
+   
+----------*/
+
+
+/* 
+	STRUCTURE
+-------------------------------------------------------------------------------*/
+
+.page {
+	height: 100%;
+}
+#sidebar {
+	position: absolute;
+	top: 0;
+	z-index: 2;
+	width: 200px;
+	height: 663px;
+	margin-top: 85px;
+	
+	.inner.main {
+		width: 185px;
+		height: 100%;
+		background: @white;
+	}
+}
+.maincontent .inner {
+
+	.ui-content {
+		width: auto;
+		margin-left: 215px;
+		padding: 0 10px;
+		background: url('../img/gfx/shadow-content-left.png') no-repeat left center,
+					url('../img/gfx/shadow-content-right.png') no-repeat right center;
+	}
+	.ui-content .inner {
+		background: @bgrepeatbretina;
+	}
+}
+
+
+/* 
+	HEADER
+-------------------------------------------------------------------------------*/
+
+div:not(#loginpage):not(#resetpage) {
+	
+	.header {
+		height: 85px;
+		text-align: left;
+	}
+	img.logo {
+		margin: 25px 0 25px 30px;
+	}
+}
+
+
+/* 
+	NAVIGATION
+-------------------------------------------------------------------------------*/
+
+.categories {
+	
+	#overlayshadow {
+		position: absolute;
+		top: 0;
+		right: 15px;
+		z-index: 2;
+	}
+	li {
+		position: relative;
+		height: 81px;
+		display: block;
+	}
+	a {
+		width: 125px;
+		height: 80px;
+		font-size: @fontsize + 0.125em;
+		color: @grey;
+		font-weight: bold;
+		line-height: 80px;
+		background: @white;
+		border-bottom: 1px solid @lightgrey;
+		margin: 0 20px 0 0;
+		padding: 0 30px;
+		display: block;
+		
+		/* Animation */
+		-webkit-transition: all 0.3s ease-in-out;
+		-moz-transition: all 0.3s ease-in-out;
+		-o-transition: all 0.3s ease-in-out;
+		-ms-transition: all 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;
+		
+		&:hover {
+			color: @pricolor;
+			background: @fivcolor;
+		}
+	}
+	li.active a {
+		position: absolute;
+		top: -5px;
+		z-index: 9;
+		height: 81px;
+		line-height: 81px;
+		border-bottom: none;
+		border-left: 5px solid @pricolor;
+		.box-shadow(~"0 0 10px rgba(0,0,0,.35)");
+	}
+}
+.links {
+	width: 190px;
+	margin-top: 20px;
+}
+
+
+/* 
+	CONTENT
+-------------------------------------------------------------------------------*/
+
+.maincontent {
+	
+	.content {
+		
+		.inner {
+			padding: 0 0 22px;
+		}
+	}
+	.ui-content {
+		position: relative;
+	}
+	h1.title {
+		color: @white;
+		padding: 1em 1em 0.5em;
+	}
+}
+#mainpage .maincontent {
+	padding: 0 40px 20px 0;
+}
+
+/* 
+	PRESENTATION
+-------------------------------------------------------------------------------*/
+
+#presentationslider #horizontal_slider {
+	background: transparent;
+}
+.presentation {
+	position: relative;
+	background: @white;
+	border-left: 5px solid @foucolor;
+	margin: 0 40px 10px 0;
+	padding: 0.8em 1em 0.3em;
+	overflow: hidden;
+	
+	.inner {
+		background: transparent !important;
+		padding: 0 !important;
+	}
+	.content {
+		margin-right: 120px;
+	}
+	h1 {
+		font-size: @fontsize + 0.125em;
+		margin-bottom: 0.2em;
+	}
+	.description {
+		font-size: @fontsize - 0.125em;
+		line-height: @lineheight;
+	}
+	.files {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 120px;
+		height: 120px;
+		float: right;
+		
+		ul {
+			background: @foucolor url('../img/gfx/shadow-files-left.png') no-repeat left top;
+			padding: 17px;
+		}
+		li.key,
+		li.send {
+			margin-right: 0;
+		}
+		li.ppt a,
+		li.pdf a {
+			margin-right: 8px;
+		}
+		li.ppt a,
+		li.key a {
+			margin-bottom: 18px;
+		}
+		li.key a,
+		li.send a {
+			margin-right: 0;
+		}
+	}
+	
+	h1.title {
+		color: @white;
+	}
+}
+@import "carousel.less";
+
+
+/* 
+	DIALOGS
+-------------------------------------------------------------------------------*/
+
+.dialog {
+	width: 65%;
+	left: 50%;
+	background: @white;
+	margin-left: -32.5%;
+	
+	.content .inner {
+		padding: 0 1.5em 30px;
+	}
+	form {
+		label {
+			width: 30%;
+			height: 32px;
+			font-size: @fontsize - 0.125em;
+			line-height: 32px;
+			margin: 0.5em 0;
+			padding-top: 10px;
+			float: left;
+			display: inline-block;
+		}
+		label {
+			padding-top: 0;
+		}
+		label:last-of-type {
+			clear: both;
+		}
+		input:not(.submit) {
+			width: 64%;
+			margin: 0.5em 0;
+			float: right;
+		}
+		select {
+			margin: 0.5em 0;
+		}
+		input#confirmpassword,
+		textarea {
+			margin-bottom: 1.5em;
+		}
+		input.submit {
+			margin-top: 1em;
+			clear: both;
+		}
+		#selectcat,
+		#selectpres {
+			width: 67%;
+			float: right;
+		}
+	}
+}

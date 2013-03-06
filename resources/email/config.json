@@ -1,0 +1,11 @@
+{
+	"type": "Email",
+	"host": "smtp.gmail.com",
+	"port": "465",
+	"ssl": true,
+	"username": "mytestacc99@gmail.com",
+	"password": "testaccountpassword",
+	"defaultFromAddress": "mytestacc99@gmail.com",
+	"internalOnly": false,
+	"productionOnly": false
+}

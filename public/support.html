@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+  
+  <head>
+    <title>support</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.css">
+    <script src="js/jquery.min.js"></script>
+	<script type="text/javascript">
+		dpd.users.me(function (result) {
+			if(result == '')
+			{
+				//alert("no user");
+				location.href = "/";
+			}
+			else
+			{
+				if(result.role == 'Sales manager')
+				{
+					location.href = "/#mainpage";
+				}
+			}
+		});
+	</script>
+  </head>
+  
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Administration Finn sales app</a>
+          <div class="navbar-content">
+            <ul class="nav">
+              <li>
+                <a href="presentations.html">Home</a> 
+              </li>
+              <li>
+                <a href="#">My Account</a> 
+              </li>
+              <li>
+                <a href="support.html">Support</a> 
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <ul class="nav  nav-pills nav-stacked">
+            <li>
+              <a href="users.html">Users</a> 
+            </li>
+            <li>
+              <a href="presentations.html">Presentations</a> 
+            </li>
+            <li>
+              <a href="categories.html">Categories</a> 
+            </li>
+            <li>
+              <a href="tags.html">Tags</a> 
+            </li>
+            <li>
+              <a href="settings.html">Settings</a> 
+            </li>
+          </ul>
+          <div class="well">
+            <p>
+              <b>Tip:</b>You can add additional components to your layout easily.</p>
+          </div>
+        </div>
+        <div class="span9">
+          <ul class="breadcrumb">
+            <li>
+              <a href="#">Home</a>
+              <span class="divider">/</span>
+            </li>
+            <li class="active">Support</li>
+          </ul>
+          <div class="row-fluid">
+            <div class="span">
+              <h2>Support</h2>
+              <p>Information on how to contact the makes of the web app.</p>
+              <a class="btn"
+              href="#"><span class="btn-label">Email us</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+
+</html>

@@ -1,0 +1,83 @@
+#presentationslider {
+	width: 770px;
+	margin: 0 0 0 -5px;
+	overflow: hidden;
+}
+	.scroll-content-horz {
+		width: 1550px;
+		height: 500px;
+		padding: 0 0 20px;
+		float: left;
+	}
+	.scroll-content-horz ul {
+		width: 100%;
+		height: 100%;
+		text-align: left;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display :block;
+		float:left;
+	}
+	.scroll-content-horz li.slide {
+		width: 755px;
+		height: 500px;
+		list-style: none;
+		list-style-image: none;
+		list-style-position: outside;
+		list-style-type: none;
+		margin-left: 15px;
+		float: left;
+	}
+	.scroll-content-horz li.slide:first-of-type {
+		margin-left: 0;
+	}
+#nav {
+	width: 200px;
+	position: absolute;
+	top: 30px;
+	right: 50px;
+}
+/*#prev, #next {
+	width:80px;
+	font-size:14px;
+	font-weight:bold;
+	padding:5px 0;
+	float:left;
+}*/
+
+/*#next {
+	text-align:right;
+	float:right;
+}*/
+#indicator {
+	float: right;
+}
+	#indicator > li {
+		list-style:none;
+		padding:0;
+		margin:0;
+		display:block;
+		float:left;
+	}
+	#indicator > li {
+		.size(10px);
+		text-indent:-9999em;
+		.border-radius(5px);
+		background-color: rgba(255, 255, 255, .5);
+		margin-right: 5px;
+		overflow:hidden;
+	}
+	#indicator > li.active {
+		background-color: #fff;
+	}
+	#indicator > li:last-child {
+		margin:0;
+	}
+#categoryslider {
+	width: 200px;
+	height: 570px;
+}
+	.scroll-content-vert {
+		height: 515px;
+	}

@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+  
+  <head>
+    <title>Add tag</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.css">
+    <script src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="dpd.js"></script>
+	<script type="text/javascript" src="/js/custom.js"></script>
+	<script>
+		dpd.users.me(function (result) {
+			if(result == '')
+			{
+				//alert("no user");
+				location.href = "/";
+			}
+			else
+			{
+				if(result.role == 'Sales manager')
+				{
+					location.href = "/#mainpage";
+				}
+			}
+		});
+	</script>
+  </head>
+  
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Administration Finn sales app</a>
+          <div class="navbar-content">
+            <ul class="nav">
+              <li>
+                <a href="presentations.html">Home</a> 
+              </li>
+              <li>
+                <a href="account_settings.html">My Account</a> 
+              </li>
+              <li>
+                <a href="support.html">Support</a> 
+              </li>
+            </ul>
+			<ul class="nav" style="float:right;">
+			  <li>
+				 <a href="#" id="logout-btn">Logout</a>
+			  </li>
+			</ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <ul class="nav  nav-pills nav-stacked">
+            <li>
+              <a href="users.html">Users</a> 
+            </li>
+            <li>
+              <a href="presentations.html">Presentations</a> 
+            </li>
+            <li>
+              <a href="categories.html">Categories</a> 
+            </li>
+            <li>
+              <a href="tags.html">Tags</a> 
+            </li>
+            <li>
+              <a href="settings.html">Settings</a> 
+            </li>
+          </ul>
+          <div class="well">
+            <p>
+              <b>Tip:</b> Make sure your files are not bigger &nbsp;then 100mb, because
+              people can be downloading it on 3g networks.</p>
+          </div>
+        </div>
+        <div class="span9">
+          <ul class="breadcrumb">
+            <li>
+              <a href="#">Home</a>
+              <span class="divider">/</span>
+            </li>
+            <li>
+              <a href="#">Tag</a>
+              <span class="divider">/</span>
+            </li>
+            <li class="active">Add tag</li>
+          </ul>
+          <div class="row-fluid">
+            <div class="span">
+			<span id="err_msg" style="color:red;"></span>
+              <h2>Add tag</h2>
+              <p>A paragraph of details about the heading and its related content so that
+                you can have an example of how this should work.</p>
+              <form class="form-vertical" id="add_tag">
+                <div class="control-group">
+                  <label class="control-label">Title</label>
+                  <div class="controls">
+                    <input type="text" class="input-large" id="title" name="title"> 
+                  </div>
+                </div>
+                <!--<div class="control-group">
+                  <label class="control-label">Position</label>
+                  <div class="controls">
+                    <select>
+                      <option>Top</option>
+                      <option>Tag 1</option>
+                      <option>Tag 2</option>
+                    </select>
+                  </div>
+                </div>-->
+                <label class="checkbox">
+                  <input type="checkbox" name="published" id="published" checked="yes">
+                  <span>Published</span>
+                </label>
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary"><span class="btn-label">Create tag</span></button>
+                  <a class="btn" href="#"><span class="btn-label">Cancel</span></a> 
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+
+</html>

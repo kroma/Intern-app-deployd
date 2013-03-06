@@ -1,0 +1,374 @@
+<!doctype html>
+<html>
+  
+  <head>
+    <title>Add presentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.css">
+    <script src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="dpd.js"></script>
+	<script type="text/javascript" src="/js/custom.js"></script>
+	<script type="text/javascript">
+		dpd.users.me(function (result) {
+			if(result == '')
+			{
+				//alert("no user");
+				location.href = "/";
+			}
+			else
+			{
+				if(result.role == 'Sales manager')
+				{
+					location.href = "/#mainpage";
+				}
+			}
+		});
+		var cat_query = {"published":"Yes"};
+		dpd.categories.get(cat_query, function (result, err) {
+		  if(err) return console.log(err);
+		  console.log(result);
+		  var dta = '<option value="0">Select Category</option>';
+		  for (i=0;i<result.length;i++)
+		  {
+			dta += '<option value="'+result[i].id+'">'+result[i].title+'</option>';
+          }
+		  $('#cat').html(dta);
+		});
+		
+		var tag_query = {"published":"Yes"};
+		dpd.tags.get(tag_query, function (result, err) {
+		  if(err) return console.log(err);
+		  console.log(result);
+		  var dta = '<option value="0">Select Category</option>';
+		  for (i=0;i<result.length;i++)
+		  {
+			dta += '<option value="'+result[i].title+'">'+result[i].title+'</option>';
+          }
+		  $('#tag').html(dta);
+		});
+	</script>
+  </head>
+  
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Administration Finn sales app</a>
+          <div class="navbar-content">
+            <ul class="nav">
+              <li>
+                <a href="presentations.html">Home</a> 
+              </li>
+              <li>
+                <a href="#">My Account</a> 
+              </li>
+              <li>
+                <a href="support.html">Support</a> 
+              </li>
+            </ul>
+			<ul class="nav" style="float:right;">
+			  <li>
+				 <a href="#" id="logout-btn">Logout</a>
+			  </li>
+			</ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <ul class="nav  nav-pills nav-stacked">
+            <li>
+              <a href="users.html">Users</a> 
+            </li>
+            <li>
+              <a href="presentations.html">Presentations</a> 
+            </li>
+            <li>
+              <a href="categories.html">Categories</a> 
+            </li>
+            <li>
+              <a href="tags.html">Tags</a> 
+            </li>
+            <li>
+              <a href="settings.html">Settings</a> 
+            </li>
+          </ul>
+          <div class="well">
+            <p>
+              <b>Tip:</b> Make sure your files are not bigger &nbsp;then 100mb, because
+              people can be downloading it on 3g networks.</p>
+          </div>
+        </div>
+        <div class="span9">
+          <ul class="breadcrumb">
+            <li>
+              <a href="#">Home</a>
+              <span class="divider">/</span>
+            </li>
+            <li>
+              <a href="#">Presentations</a>
+              <span class="divider">/</span>
+            </li>
+            <li class="active">Add presentation</li>
+          </ul>
+          <div class="row-fluid">
+            <div class="span">
+			<span id="err_msg" style="color:red;"></span>
+              <h2>Add presentation</h2>
+              <p>A paragraph of details about the heading and its related content so that
+                you can have an example of how this should work.</p>
+              <form class="form-vertical" id="add_presentation">
+                <div class="control-group">
+                  <label class="control-label">Title</label>
+                  <div class="controls">
+                    <input type="text" class="input-large" id="title"> 
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Description</label>
+                  <div class="controls">
+                    <textarea id="desc"></textarea>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Category</label>
+                  <div class="controls">
+                    <select id="cat">
+                    </select>
+                  </div>
+                </div>
+                <div class="control-group">
+                  <label class="control-label">Tags</label>
+                  <div class="controls">
+                    <select id="tag">
+                    </select>
+                  </div>
+                </div>
+				<!--Keynote -->
+                <div class="control-group">
+                  <label class="control-label">Keynote file</label>
+                  <div class="controls">
+                    <input type="text" class="input-large" id="file_res_key"> 
+					<div id="error_msg_key" style="color:red;"></div>
+                  </div>
+                </div>
+				<div class="control-group">
+                  <label class="control-label">Upload file</label>
+                  <div class="controls">
+                    <input id="fileupload_key" type="file"  class="btn-label" onchange="javascript:validate_filetype('key');" name="files[]" data-url="http://europa.kroma.no.c.bakabo.net/finn/upload/server/php/" accept="application/key" multiple>
+					<input type="button" id="uploadBtn_key" style="display:none;" class="btn-label" value="Upload"/>
+				  </div>
+				  <label id="file_res_key_lbl"></label>
+                </div>
+				<!--end Keynote -->
+				<!--Powerpoint -->
+                <div class="control-group">
+                  <label class="control-label">Powerpoint file
+                    <br> 
+                  </label>
+                  <div class="controls">
+                    <input type="text" class="input-large" id="file_res_ppt"> 
+					<div style="color:red;" id="error_msg_ppt"></div>
+                  </div>
+                </div>
+				<div class="control-group">
+                  <label class="control-label">Upload file</label>
+                  <div class="controls">
+                    <input id="fileupload_ppt" type="file"  class="btn-label" onchange="javascript:validate_filetype('ppt');" name="files[]" data-url="http://europa.kroma.no.c.bakabo.net/finn/upload/server/php/" accept="application/ppt" multiple>
+					<input type="button" id="uploadBtn_ppt" style="display:none;" class="btn-label" value="Upload"/>
+				  </div>
+				  <label id="file_res_ppt_lbl"></label>
+                </div>
+				<!--End Powerpoint -->
+				<!--Pdf -->
+                <div class="control-group">
+                  <label class="control-label">Pdf file</label>
+                  <div class="controls">
+                    <input type="text" class="input-large" id="file_res_pdf"> 
+					<div style="color:red;" id="error_msg_pdf"></div>
+                  </div>
+                </div>
+				<div class="control-group">
+                  <label class="control-label">Upload file</label>
+                  <div class="controls">
+                    <input id="fileupload_pdf" type="file"  class="btn-label" onchange="javascript:validate_filetype('pdf');" name="files[]" data-url="http://europa.kroma.no.c.bakabo.net/finn/upload/server/php/" accept="application/pdf" multiple>
+					<input type="button" id="uploadBtn_pdf" style="display:none;" class="btn-label" value="Upload"/>
+				 </div>
+				  <label id="file_res_pdf_lbl"></label>
+                </div>
+				<!--End Pdf -->
+                <label class="checkbox">
+                  <input type="checkbox" id="published" checked="yes">
+                  <span>Published</span>
+                </label>
+				<input type="hidden" id="file_size_pdf"/>
+				<input type="hidden" id="file_size_ppt"/>
+				<input type="hidden" id="file_size_key"/>
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary"><span class="btn-label">Create presentation</span></button>
+                  <a class="btn" href="#"><span class="btn-label">Cancel</span></a> 
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+		<script src="js/vendor/jquery.ui.widget.js"></script>
+		<script src="js/jquery.iframe-transport.js"></script>
+		<script src="js/jquery.fileupload.js"></script>
+		<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
+		<script src="http://blueimp.github.com/JavaScript-Canvas-to-Blob/canvas-to-blob.min.js"></script>
+		<script src="js/jquery.fileupload-fp.js"></script>
+		<script>
+
+		function validate_filetype(fType)
+		{
+			if(fType == 'key')
+			{
+				var file = $('#fileupload_'+fType).val();
+				var exts = 'key';
+				// first check if file field has any value
+				if ( file ) {
+				// split file name at dot
+					var get_ext = file.split('.');
+					// reverse name to check extension
+					get_ext = get_ext.reverse();
+					// check file type is valid as given in 'exts' array
+					if (get_ext[0].toLowerCase() == exts){
+						//alert( 'Allowed extension!' );
+						$('#error_msg_key').text('');
+						$('#uploadBtn_key').show();
+					} else {
+						//alert( 'Invalid file!' );
+						$('#error_msg_key').text('Invalid file Extension!');
+						//e.preventDefault();
+					}
+				}
+			}
+			else if(fType == 'pdf')
+			{
+				var file = $('#fileupload_'+fType).val();
+				var exts = 'pdf';
+				// first check if file field has any value
+				if ( file ) {
+				// split file name at dot
+					var get_ext = file.split('.');
+					// reverse name to check extension
+					get_ext = get_ext.reverse();
+					//alert(get_ext);
+					//alert($.inArray ( get_ext[0].toLowerCase(), exts ));
+					// check file type is valid as given in 'exts' array
+					if (get_ext[0].toLowerCase() == exts) {
+						//alert( 'Allowed extension!' );fileup = true;
+						$('#error_msg_pdf').text('');
+						$('#uploadBtn_pdf').show();
+					} else {
+						//alert( 'Invalid file!' );
+						$('#error_msg_pdf').text('Invalid file Extension!');
+					}
+				}
+			}
+			else if(fType == 'ppt')
+			{
+				var file = $('#fileupload_'+fType).val();
+				var exts = ['ppt', 'pptx', 'pptm', 'potx', 'potm', 'ppam', 'ppsm', 'sldx', 'sldm', 'thmx'];
+				// first check if file field has any value
+				if ( file ) {
+				// split file name at dot
+					var get_ext = file.split('.');
+					// reverse name to check extension
+					get_ext = get_ext.reverse();
+					// check file type is valid as given in 'exts' array
+					if (get_ext[0].toLowerCase() == 'ppt' || get_ext[0].toLowerCase() == 'pptx' || get_ext[0].toLowerCase() == 'pptm' || get_ext[0].toLowerCase() == 'potx' || get_ext[0].toLowerCase() == 'potm' || get_ext[0].toLowerCase() == 'ppam' || get_ext[0].toLowerCase() == 'ppsm' || get_ext[0].toLowerCase() == 'sldx' || get_ext[0].toLowerCase() == 'sldm' || get_ext[0].toLowerCase() == 'thmx'){
+						//alert( 'Allowed extension!' );
+						$('#error_msg_ppt').text('');
+						$('#uploadBtn_ppt').show();
+					} else {
+						//alert( 'Invalid file!' );
+						$('#error_msg_ppt').text('Invalid file Extension!');
+					}
+				}
+			}
+		}
+		$(function () {
+			$('#fileupload_ppt').fileupload({
+				dataType: 'json',
+				acceptFileTypes: /(\.|\/)(ppt)$/i,
+				process: [
+				{
+					action: 'load',
+					fileTypes: /^application\/(ppt)$/,
+					maxFileSize: 200000 // 20MB
+				}],
+				done: function (e, data) {
+					$.each(data.result.files, function (index, file) {
+						//$('<p/>').text(file.name).appendTo(document.body);
+						$('#file_res_ppt').val(file.name);
+						$('#file_res_ppt_lbl').text("Uploaded");
+						$('#file_size_ppt').val(file.size/1048576);
+					});
+				},
+				add:function (e, data) {
+				   $("#uploadBtn_ppt").off('click').on('click',function () {           
+					 data.submit();
+				   });
+				}
+			});
+		
+			$('#fileupload_pdf').fileupload({
+				dataType: 'json',
+				acceptFileTypes: /(\.|\/)(pdf)$/i,
+				process: [
+				{
+					action: 'load',
+					fileTypes: /^application\/(pdf)$/,
+					maxFileSize: 200000 // 20MB
+				}],
+				done: function (e, data) {
+					$.each(data.result.files, function (index, file) {
+						//$('<p/>').text(file.name).appendTo(document.body);
+						$('#file_res_pdf').val(file.name);
+						$('#file_res_pdf_lbl').text("Uploaded");
+						$('#file_size_pdf').val(file.size/1048576);
+					});
+				},
+				add:function (e, data) {
+				   $("#uploadBtn_pdf").off('click').on('click',function () {           
+					 data.submit();
+				   });
+				}
+			});
+		
+			$('#fileupload_key').fileupload({
+				dataType: 'json',
+				acceptFileTypes: /(\.|\/)(key)$/i,
+				process: [
+				{
+					action: 'load',
+					fileTypes: /^application\/(key)$/,
+					maxFileSize: 200000 // 20MB
+				}],
+				done: function (e, data) {
+					$.each(data.result.files, function (index, file) {
+						//$('<p/>').text(file.name).appendTo(document.body);
+						$('#file_res_key').val(file.name);
+						$('#file_res_key_lbl').text("Uploaded");
+						$('#file_size_key').val(file.size/1048576);
+					});
+				},
+				add:function (e, data) {
+				   $("#uploadBtn_key").off('click').on('click',function () {           
+					 data.submit();
+				   });
+				}
+			});
+		});
+		</script>
+  </body>
+
+</html>

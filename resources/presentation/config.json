@@ -1,0 +1,109 @@
+{
+	"type": "Collection",
+	"properties": {
+		"title": {
+			"name": "title",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "title",
+			"order": 0
+		},
+		"description": {
+			"name": "description",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "description",
+			"order": 1
+		},
+		"category": {
+			"name": "category",
+			"type": "array",
+			"typeLabel": "array",
+			"required": false,
+			"id": "category",
+			"order": 2
+		},
+		"tags": {
+			"name": "tags",
+			"type": "array",
+			"typeLabel": "array",
+			"required": false,
+			"id": "tags",
+			"order": 3
+		},
+		"fileNameKey": {
+			"name": "fileNameKey",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "fileNameKey",
+			"order": 4
+		},
+		"fileSizeKey": {
+			"name": "fileSizeKey",
+			"type": "number",
+			"typeLabel": "number",
+			"required": false,
+			"id": "fileSizeKey",
+			"order": 5
+		},
+		"fileNamePpt": {
+			"name": "fileNamePpt",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "fileNamePpt",
+			"order": 6
+		},
+		"fileSizePpt": {
+			"name": "fileSizePpt",
+			"type": "number",
+			"typeLabel": "number",
+			"required": false,
+			"id": "fileSizePpt",
+			"order": 7
+		},
+		"fileNamePdf": {
+			"name": "fileNamePdf",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "fileNamePdf",
+			"order": 8
+		},
+		"fileSizePdf": {
+			"name": "fileSizePdf",
+			"type": "number",
+			"typeLabel": "number",
+			"required": false,
+			"id": "fileSizePdf",
+			"order": 9
+		},
+		"published": {
+			"name": "published",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "published",
+			"order": 10
+		},
+		"dateCreated": {
+			"name": "dateCreated",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "dateCreated",
+			"order": 11
+		},
+		"dateUpdated": {
+			"name": "dateUpdated",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "dateUpdated",
+			"order": 12
+		}
+	}
+}

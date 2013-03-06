@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+  
+  <head>
+    <title>Presentations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.css">
+     <link rel="stylesheet" href="addons/sortable/css/dt_bootstrap.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="addons/sortable/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="addons/sortable/js/dt_bootstrap.js"></script>
+	<script type="text/javascript" src="dpd.js"></script>
+	<script type="text/javascript" src="/js/custom.js"></script>
+	<script type="text/javascript">
+		dpd.users.me(function (result) {
+			if(result == '')
+			{
+				//alert("no user");
+				location.href = "/";
+			}
+			else
+			{
+				if(result.role == 'Sales manager')
+				{
+					location.href = "/#mainpage";
+				}
+			}
+		});
+		function dynamicSort(property) {
+			//alert(property);
+			var sortOrder = 1;
+			if(property[0] === "-") {
+				sortOrder = -1;
+				property = property.substr(1, property.length - 1);
+			}
+			return function (a,b) {
+				var res = (a[property] > b[property]) ? -1 : (a[property] < b[property]) ? 1 : 0;
+				return res * sortOrder;
+			}
+		}
+		dpd.presentation.get(function (result, err) {
+		  if(err) return console.log(err);
+		  console.log(result);
+		  var dta = '';
+		  result.sort(dynamicSort("dateCreated"));
+		  /*result.sort(function(a, b){
+			 var dateA=new Date(a.dateCreated), dateB=new Date(b.dateCreated)
+			 return dateA-dateB //sort by date ascending
+		  });*/
+		  console.log(result);
+		  for (i=0;i<result.length;i++)
+		  {
+			var my_date = new Date(result[i].dateCreated);
+			var month = my_date.getMonth() + 1;
+			var day = my_date.getDate();
+			var year = my_date.getFullYear();
+			dta += '<tr id="'+result[i].id+'"><td id="'+result[i].id+'_username">'+result[i].title+'</td><td>'+month + '-' + day + '-' + year+'</td>';
+			if(result[i].published == 'Yes')
+				dta += '<td><img src="img/checkbox-checked.png"/></td>';
+			else if(result[i].published == 'No')
+				dta += '<td><img src="img/checkbox-unchecked.png"/></td>';
+            dta += '<td><div class="btn-toolbar"><div class="btn-group"><a class="btn" href="javascript:preEdit(\''+result[i].id+'\', \'presentation\')"><i class="icon-pencil"></i></a></div></div></td>';
+            dta += '<td><div class="btn-toolbar"><div class="btn-group"><a class="btn" href="javascript:deleteData(\''+result[i].id+'\', \'presentation\')"><i class="icon-trash"></i></a></div></div></td></tr>';
+
+			//dta += '</div></div></td></tr>';
+			
+		  }
+		  $('#tbodyData').html(dta);
+		});
+		
+		
+	</script>
+  </head>
+  
+  <body>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Administration Finn sales app</a>
+          <div class="navbar-content">
+            <ul class="nav">
+              <li>
+                <a href="presentations.html">Home</a> 
+              </li>
+              <li>
+                <a href="account_settings.html">My Account</a> 
+              </li>
+              <li>
+                <a href="support.html">Support</a> 
+              </li>
+            </ul>
+			<ul class="nav" style="float:right;">
+			  <li>
+				 <a href="#" id="logout-btn">Logout</a>
+			  </li>
+			</ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <ul class="nav  nav-pills nav-stacked">
+            <li>
+              <a href="users.html">Users</a> 
+            </li>
+            <li>
+              <a href="presentations.html">Presentations</a> 
+            </li>
+            <li>
+              <a href="categories.html">Categories</a> 
+            </li>
+            <li>
+              <a href="tags.html">Tags</a> 
+            </li>
+            <li>
+              <a href="settings.html">Settings</a> 
+            </li>
+          </ul>
+          <div class="well">
+            <p>
+              <b>Tip:</b>You can add additional components to your layout easily.</p>
+          </div>
+        </div>
+        <div class="span9">
+          <ul class="breadcrumb">
+            <li>
+              <a href="#">Home</a>
+              <span class="divider">/</span>
+            </li>
+            <li class="active">Presentations</li>
+          </ul>
+          <div class="row-fluid">
+            <div class="span">
+              <h2>Presentation overview</h2>
+              <p>A paragraph of details about the heading and its related content so that
+                you can have an example of how this should work.</p>
+              <p><a href="add_presentation.html" class="btn">Add new presentation</a></p>
+              
+              <table id="example" class="table table-bordered table-hover">
+              	<thead>
+              		<tr>
+              			<td>Presentation</td>
+              			<td>Date</td>
+              			<td>Published</td>
+              			<td></td>
+              			<td></td>
+              		</tr>
+              	</thead>
+              	<tbody id="tbodyData">
+              	</tbody>
+              </table>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+
+</html>

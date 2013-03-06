@@ -1,0 +1,98 @@
+/* 
+	WEB APP MADE BY
+-------------------------------------------------------------------------------
+
+   Design, html, css & js
+   Robin Klein Schiphorst
+   http://www.kroma.no
+   rk@kroma.no
+   
+   * Html, Css & javascript based on the jQuery Mobile Framework.
+   * There are third party scripts in the web app, we thank everyone for there hard work
+     and sharing it with the world.
+   
+----------*/
+
+
+/*---------- jQUERY MOBILE ----------*/
+
+@import "../css/jquery.mobile.structure-1.2.0.min.css";
+
+/*---------- IMPORT MY FILES ----------*/
+
+@import "../css/add2home.css";
+@import "libs/lesshat.less";
+
+/* Theme */
+@import "theme.less";
+@import "crossbrowser.less";
+
+/*---------- BRAND SETUP ----------*/
+
+/* Font */
+/* Default font size = 16px */
+/* Default line height = 20px */
+@fontfamily 			: Verdana, Geneva, Kalimati, sans-serif;
+@fontsize 				: 1em;		/* Text 14px/16px*/
+    @fontsizebig 		: 1.2em;		/* Text big */
+    @fontsizesmall 		: 0.8em;		/* Text small */
+@lineheight 			: 1.4em;		/* Text line-height */
+    @lineheightbig 		: 1.4em;		/* Text line-height big */
+    @lineheightsmall 	: 1.2em;		/* Text line-height small */
+
+/* Headings */
+@headingfontfamily 		: @fontfamily;
+@headingfontweight 		: bold;
+
+/* Theme colors */
+@pricolor 	: #00abef;              /* Blue */
+@seccolor 	: #00529f;            	/* Dark blue */
+@thicolor 	: #f79233;            	/* Orange */
+@foucolor 	: #a9e7ff;              /* Light blue */
+@fivcolor 	: #e5f6fe;              /* Links active */
+@sixcolor 	: green;                /* Call to action */
+
+/* Basic colors */
+@white		: white;
+@blue 		: @pricolor;
+@green 		: green;
+@red 		: red;
+@yellow 	: yellow;
+@orange 	: @thicolor;
+@purple 	: purple;
+@grey 		: grey;
+@lightgrey 	: #a7a7a7;
+@darkgrey 	: #555;
+
+/* Element colors */
+@textcolor  		: @lightgrey;   /* Text */
+@headingcolor  		: @pricolor;    /* Headings */
+@linkcolor			: @pricolor;	/* Links */
+@linkcolorhover		: @foucolor;	/* Links hover */
+@linkcoloractive	: @fivcolor;	/* Links active */
+
+/* Form states & alerts */
+/*@warningText		: inhert;
+@warningBackground	: inhert;
+@errorText			: inhert;
+@errorBackground	: inhert;
+@successText		: inhert;
+@successBackground	: inhert;
+@infoText			: inhert;
+@infoBackground		: inhert;*/
+
+/* Background setup */
+@bgcolor   	: @pricolor;                  /* Default bg color */
+@bgfixed   	: @bgcolor url('../img/gfx/bg-default.jpeg') no-repeat center center fixed;
+@bgrepeat  	: @bgcolor url('../img/gfx/bg.jpg') repeat top left;
+@bgrepeatretina : @bgcolor url('../img/gfx/bg@2x.jpg') repeat top left;
+@bgrepeatb  	: @bgcolor url('../img/gfx/bg2.jpg') repeat top left;
+@bgrepeatbretina : @bgcolor url('../img/gfx/bg2@2x.jpg') repeat top left;
+
+/* Other default settings */
+@border			: 2px;
+@bordersmall	: 1px;
+@borderbig		: 4px;
+@radius 		: 0.5em;
+@shadow 		: 2px 0 0 #000;
+

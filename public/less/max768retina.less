@@ -1,0 +1,160 @@
+/* 
+	WEB APP MADE BY
+-------------------------------------------------------------------------------
+
+   Design, html, css & js
+   Robin Klein Schiphorst
+   http://www.kroma.no
+   rk@kroma.no
+   
+   * Html, Css & javascript based on the jQuery Mobile Framework.
+   * There are third party scripts in the web app, we thank everyone for there hard work
+     and sharing it with the world.
+   
+----------*/
+
+/* 
+	THEME SETTINGS
+-------------------------------------------------------------------------------*/
+
+
+/* 
+	ELEMENTS
+-------------------------------------------------------------------------------*/
+
+.btnloadmore {
+	background: url('../img/gfx/shadow-corners-top@2x.png') no-repeat center top;
+	background-size: 320px;
+}
+
+/* 
+	TYPOGRAPHY
+-------------------------------------------------------------------------------*/
+
+
+/* 
+	NAVIGATION
+-------------------------------------------------------------------------------*/
+
+/*.nav.categories {
+	background: @pricolor url('../img/gfx/bg2@2x.jpg') repeat left top;
+	background-size: 320px;
+	
+	li {
+		&:first-of-type a:not(.active) {
+			background: url('../img/gfx/shadow-center-top@2x.png') no-repeat center top,
+						url('../img/gfx/shadow-center-bottom@2x.png') no-repeat center bottom;
+			background-size: 320px auto, 320px auto;
+			-o-background-size: 320px auto, 320px auto; 
+			-moz-background-size: 320px auto, 320px auto;
+			-webkit-background-size: 320px auto, 320px auto;
+		}
+	}
+	a {
+		background: url('../img/gfx/shadow-center-bottom@2x.png') no-repeat center bottom;
+		background-size: 320px;
+		
+		&.active {
+			background: url('../img/gfx/shadow-center-top@2x.png') no-repeat center top,
+						url('../img/gfx/shadow-center-bottom@2x.png') no-repeat center bottom;
+			background-size: 320px auto, 320px auto;
+			-o-background-size: 320px auto, 320px auto; 
+			-moz-background-size: 320px auto, 320px auto;
+			-webkit-background-size: 320px auto, 320px auto;
+		}
+	}
+}*/
+.nav.categories.active {
+	background: url('../img/gfx/shadow-corners-top@2x.png') no-repeat center bottom;
+	background-size: auto 25px;
+	padding-bottom: 25px;
+}
+.links {
+	background: @bgrepeatretina;
+	background-size: 20px auto;
+	
+	li a#navadmin {
+		background: url('../img/gfx/icon-admin-inv@2x.png') no-repeat center center;
+		background-size: 29px;
+	}
+	li a#navmyaccount {
+		background: url('../img/gfx/icon-myaccount-inv@2x.png') no-repeat center center;
+		background-size: 29px;
+	}
+	li a#navsupport {
+		background: url('../img/gfx/icon-support-inv@2x.png') no-repeat center center;
+		background-size: 29px;
+	}
+}
+
+
+/* 
+	HEADER
+-------------------------------------------------------------------------------*/
+
+div:not(#loginpage):not(#resetpage) .header a.showmenu {
+	background: url('../img/gfx/icon-menu@2x.png') no-repeat right center;
+	background-size: 36px;
+}
+.no-touch div:not(#loginpage):not(#resetpage) .header a.showmenu:hover,
+div:not(#loginpage):not(#resetpage) .header a.showmenu.active {
+	background: url('../img/gfx/icon-menu-inv@2x.png') no-repeat right center, @bgrepeatretina;
+	background-size: 36px, 20px;
+	-o-background-size: 36px, 20px; 
+	-moz-background-size: 36px, 20px;
+	-webkit-background-size: 36px, 20px;
+}
+
+
+/* 
+	CONTENT
+-------------------------------------------------------------------------------*/
+
+
+/* 
+	PRESENTATIONS
+-------------------------------------------------------------------------------*/
+
+.maincontent .inner article .inner #presentationslider {
+
+	 .presentation {
+	 
+		h1 {
+			background: url('../img/gfx/icon-open@2x.png') no-repeat right top;
+			background-size: 55px;
+		}
+		&:not(.active) h1 {
+			background: url('../img/gfx/icon-open@2x.png') no-repeat right top,
+						url('../img/gfx/shadow-center-bottom@2x.png') no-repeat center bottom;
+			background-size: 55px, 320px auto;
+			-o-background-size: 55px, 320px auto; 
+			-moz-background-size: 55px, 320px auto;
+			-webkit-background-size: 55px, 320px auto;
+		}
+		&.active h1 {
+			background: url('../img/gfx/icon-close@2x.png') no-repeat right top;
+			background-size: 55px;
+		}
+		.files ul {
+			background: url('../img/gfx/shadow-corners-top@2x.png') no-repeat center top,
+						@foucolor url('../img/gfx/shadow-center-bottom@2x.png') no-repeat center bottom;
+			background-size: 320px auto, 320px auto;
+			-o-background-size: 320px auto, 320px auto; 
+			-moz-background-size: 320px auto, 320px auto;
+			-webkit-background-size: 320px auto, 320px auto;
+		}
+	}
+}
+.slide:last-of-type .presentation:last-of-type h1 {
+	background: url('../img/gfx/icon-open@2x.png') no-repeat right top;
+	background-size: 55px;
+}
+
+
+/* 
+	DIALOGS
+-------------------------------------------------------------------------------*/
+
+/* 
+	BOTTOM AND FOOTER
+-------------------------------------------------------------------------------*/

@@ -1,0 +1,53 @@
+{
+	"type": "Collection",
+	"properties": {
+		"title": {
+			"name": "title",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "title",
+			"order": 0
+		},
+		"iconImage": {
+			"name": "iconImage",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "iconImage",
+			"order": 1
+		},
+		"order": {
+			"name": "order",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "order",
+			"order": 2
+		},
+		"published": {
+			"name": "published",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "published",
+			"order": 3
+		},
+		"dateCreated": {
+			"name": "dateCreated",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "dateCreated",
+			"order": 4
+		},
+		"dateUpdated": {
+			"name": "dateUpdated",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "dateUpdated",
+			"order": 5
+		}
+	}
+}

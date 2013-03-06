@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Help/Suggestion</title>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="dpd.js"></script>
+		<script type="text/javascript" src="/js/custom.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+		<script type="text/javascript">
+			
+			dpd.categories.get(function (result, err) {
+			  if(err) return console.log(err);
+			  console.log(result);
+			  var dta = '';
+			  for (i=0;i<result.length;i++)
+			  {
+				dta += '<tr id="'+result[i].id+'"><td>--</td><td id="'+result[i].id+'_username">'+result[i].title+'</td><td>'+result[i].published+'</td>';
+				dta += '<td><div class="btn-toolbar"><div class="btn-group"><a class="btn" href="javascript:preEdit(\''+result[i].id+'\', \'cat\')"><i class="icon-pencil"></i></a></div></div></td></tr>';
+				//dta += '</div></div></td></tr>';
+				
+			  }
+			  $('#tbodyData').html(dta);
+			});
+			
+			
+		</script>
+	</head>
+	<body>
+		
+		<div class="container">
+			<label style="font-size:40px; display: block; text-align: center; line-height: 150%;">Login</label>
+			<span id="error_msg"></span>
+			<form id="login_form">
+			  <label for="username">Username:</label>
+			  <input type="text" id="username" />
+			  <label for="password">Password:</label>
+			  <input type="password" id="password" /><br />
+			  <a href="javascript:void(0);" id="forgot_pass">Forgot Password</a>
+			  <button type="submit" class="btn btn-primary">Login</button>
+			</form>
+		</div>
+  </body>
+</html>
